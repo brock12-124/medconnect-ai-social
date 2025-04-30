@@ -6,18 +6,19 @@ const Step: React.FC<{
   title: string;
   description: string;
   isLast?: boolean;
-}> = ({ number, title, description, isLast = false }) => {
+  delay: number;
+}> = ({ number, title, description, isLast = false, delay }) => {
   return (
-    <div className="flex">
+    <div className="flex animate-fade-in" style={{ animationDelay: `${delay}s` }}>
       <div className="flex flex-col items-center mr-6">
-        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-medical-blue text-white font-bold">
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-medical-blue text-white font-medium text-lg">
           {number}
         </div>
         {!isLast && <div className="h-full w-0.5 bg-medical-blue/20 mt-2"></div>}
       </div>
-      <div className="pb-8">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+      <div className="pb-12">
+        <h3 className="text-2xl font-medium mb-3 text-medical-dark">{title}</h3>
+        <p className="text-medical-gray text-lg leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -25,64 +26,80 @@ const Step: React.FC<{
 
 const HowItWorksSection: React.FC = () => {
   return (
-    <section id="how-it-works" className="py-20">
+    <section id="how-it-works" className="py-24">
       <div className="container-custom">
-        <h2 className="section-title text-center">How MedConnect Works</h2>
-        <p className="section-subtitle text-center">
-          A simple process designed for both patients and radiologists to get the most out of our platform.
-        </p>
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <h2 className="section-title animate-fade-in">
+            How MedConnect Works
+          </h2>
+          <p className="section-subtitle animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            A seamless experience designed for both patients and radiologists to improve healthcare outcomes.
+          </p>
+        </div>
         
-        <div className="flex flex-col md:flex-row mt-16 gap-10">
+        <div className="flex flex-col md:flex-row gap-16">
           <div className="md:w-1/2">
-            <h3 className="text-2xl font-bold mb-6 text-medical-blue">For Patients</h3>
-            <div className="space-y-2">
+            <h3 className="text-3xl font-medium mb-8 text-medical-blue animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              For Patients
+            </h3>
+            <div>
               <Step 
                 number={1} 
-                title="Create an Account" 
-                description="Sign up with your email address and set your role as a patient to access patient-specific features."
+                title="Create Your Account" 
+                description="Sign up with your email address and set your role as a patient to access patient-specific features and tools."
+                delay={0.4}
               />
               <Step 
                 number={2} 
                 title="Upload Your Scans" 
-                description="Securely upload your CT/MRI scans in NIfTI format through our easy-to-use interface."
+                description="Securely upload your CT/MRI scans in NIfTI format through our intuitive drag-and-drop interface."
+                delay={0.5}
               />
               <Step 
                 number={3} 
-                title="Receive AI Analysis" 
-                description="Our AI model will automatically detect pancreas and tumor regions, providing visual overlays."
+                title="Get AI Analysis" 
+                description="Within minutes, our advanced AI will process your scan and provide detailed visual overlays of detected regions."
+                delay={0.6}
               />
               <Step 
                 number={4} 
-                title="Join the Community" 
-                description="Connect with other patients and professionals to share experiences and gather insights."
+                title="Connect & Learn" 
+                description="Join our community to connect with physicians and peers for support, education, and insights."
                 isLast
+                delay={0.7}
               />
             </div>
           </div>
           
           <div className="md:w-1/2">
-            <h3 className="text-2xl font-bold mb-6 text-medical-purple">For Radiologists</h3>
-            <div className="space-y-2">
+            <h3 className="text-3xl font-medium mb-8 text-medical-purple animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              For Radiologists
+            </h3>
+            <div>
               <Step 
                 number={1} 
                 title="Verify Credentials" 
-                description="Create an account and verify your professional credentials to access radiologist features."
+                description="Complete our streamlined verification process to confirm your professional medical qualifications."
+                delay={0.4}
               />
               <Step 
                 number={2} 
-                title="Access Patient Scans" 
-                description="View patient-shared scans with AI annotations to provide professional insights."
+                title="Access Patient Data" 
+                description="Review patient-shared scans enhanced with AI-powered annotations to provide expert insights."
+                delay={0.5}
               />
               <Step 
                 number={3} 
-                title="Utilize Professional Tools" 
-                description="Use our specialized tools to analyze scans, add annotations, and provide detailed reports."
+                title="Use Advanced Tools" 
+                description="Leverage our specialized radiologist tools for detailed analysis, annotation, and comprehensive reporting."
+                delay={0.6}
               />
               <Step 
                 number={4} 
-                title="Engage with Community" 
-                description="Answer patient questions and collaborate with other professionals in the community."
+                title="Collaborate Seamlessly" 
+                description="Communicate with patients and fellow healthcare professionals through our secure integrated platform."
                 isLast
+                delay={0.7}
               />
             </div>
           </div>

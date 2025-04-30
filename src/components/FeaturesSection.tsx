@@ -1,22 +1,23 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { ImageIcon, Users, Search, Settings, Shield, Book } from 'lucide-react';
+import { ImageIcon, Users, Search, Shield, Book, Settings } from 'lucide-react';
 
 const FeatureCard: React.FC<{ 
   icon: React.ReactNode, 
   title: string, 
   description: string,
-  color: string
-}> = ({ icon, title, description, color }) => {
+  color: string,
+  index: number
+}> = ({ icon, title, description, color, index }) => {
   return (
-    <Card className="feature-card border-none shadow-md hover:-translate-y-1">
-      <CardContent className="p-6">
-        <div className={`w-12 h-12 rounded-lg ${color} flex items-center justify-center mb-4`}>
+    <Card className="feature-card border-none animate-fade-in" style={{ animationDelay: `${0.1 * index}s` }}>
+      <CardContent className="p-8">
+        <div className={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center mb-6`}>
           {icon}
         </div>
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <h3 className="text-2xl font-medium mb-3 text-medical-dark">{title}</h3>
+        <p className="text-medical-gray text-lg leading-relaxed">{description}</p>
       </CardContent>
     </Card>
   );
@@ -25,54 +26,56 @@ const FeatureCard: React.FC<{
 const FeaturesSection: React.FC = () => {
   const features = [
     {
-      icon: <ImageIcon className="h-6 w-6 text-white" />,
+      icon: <ImageIcon className="h-7 w-7 text-white" />,
       title: "AI Scan Analysis",
-      description: "Upload CT/MRI scans in .nii/.nii.gz format for instant AI-powered pancreas and tumor detection.",
+      description: "Upload medical scans for instant AI-powered pancreas and tumor detection with up to 97% accuracy.",
       color: "bg-medical-blue"
     },
     {
-      icon: <Users className="h-6 w-6 text-white" />,
+      icon: <Users className="h-7 w-7 text-white" />,
       title: "Community Support",
       description: "Connect with patients and radiologists in a secure environment to share experiences and advice.",
       color: "bg-medical-purple"
     },
     {
-      icon: <Shield className="h-6 w-6 text-white" />,
+      icon: <Shield className="h-7 w-7 text-white" />,
       title: "Secure & Private",
-      description: "Role-based access control ensures your medical data remains confidential and protected.",
+      description: "Advanced encryption and role-based access ensure your medical data remains confidential and protected.",
       color: "bg-medical-teal"
     },
     {
-      icon: <Search className="h-6 w-6 text-white" />,
+      icon: <Search className="h-7 w-7 text-white" />,
       title: "Advanced Visualization",
-      description: "View colored overlays highlighting regions of interest within your medical scans.",
+      description: "Interactive 3D visualization with colored overlays highlighting regions of interest within your scans.",
       color: "bg-medical-blue"
     },
     {
-      icon: <Book className="h-6 w-6 text-white" />,
+      icon: <Book className="h-7 w-7 text-white" />,
       title: "Medical Resources",
-      description: "Access a library of educational content to better understand your diagnosis.",
+      description: "Comprehensive library of educational content authored by leading oncologists and radiologists.",
       color: "bg-medical-purple"
     },
     {
-      icon: <Settings className="h-6 w-6 text-white" />,
+      icon: <Settings className="h-7 w-7 text-white" />,
       title: "Radiologist Tools",
-      description: "Specialized tools for professionals to analyze and annotate patient scans.",
+      description: "Specialized tools for professionals to analyze, annotate, and collaborate on patient scans.",
       color: "bg-medical-teal"
     },
   ];
 
   return (
-    <section id="features" className="py-20 bg-gray-50">
+    <section id="features" className="py-24 bg-medical-light-blue">
       <div className="container-custom">
-        <h2 className="section-title text-center">
-          Powerful Features for Patients and Professionals
-        </h2>
-        <p className="section-subtitle text-center">
-          MedConnect combines cutting-edge AI technology with community support to create a comprehensive healthcare platform.
-        </p>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="section-title animate-fade-in">
+            Powerful Features for Modern Healthcare
+          </h2>
+          <p className="section-subtitle animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            MedConnect brings together advanced AI technology with human expertise to transform medical imaging workflows.
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
@@ -80,6 +83,7 @@ const FeaturesSection: React.FC = () => {
               title={feature.title}
               description={feature.description}
               color={feature.color}
+              index={index}
             />
           ))}
         </div>

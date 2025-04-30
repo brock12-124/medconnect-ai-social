@@ -64,11 +64,13 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				medical: {
-					'blue': '#2C7CD1',
+					'blue': '#0071E3',
 					'teal': '#41B6C4',
 					'purple': '#6E59A5',
-					'light-purple': '#E5DEFF',
-					'light-blue': '#D3E4FD'
+					'light-purple': '#F5F3FF',
+					'light-blue': '#F0F7FF',
+					'gray': '#86868B',
+					'dark': '#1D1D1F',
 				},
 			},
 			borderRadius: {
@@ -108,20 +110,30 @@ export default {
 					'50%': {
 						transform: 'translateY(-10px)'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				'slide-up': {
+					'0%': { transform: 'translateY(20px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 3s infinite ease-in-out',
-				'float': 'float 6s infinite ease-in-out'
+				'float': 'float 6s infinite ease-in-out',
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'slide-up': 'slide-up 0.5s ease-out forwards',
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif']
+				sans: ['Inter', 'system-ui', 'sans-serif']
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'hero-pattern': 'linear-gradient(to right bottom, rgba(43, 108, 176, 0.8), rgba(110, 89, 165, 0.8))'
+				'hero-pattern': 'linear-gradient(to right bottom, rgba(255, 255, 255, 0.9), rgba(240, 247, 255, 0.9))'
 			}
 		}
 	},

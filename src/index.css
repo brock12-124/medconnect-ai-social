@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 221 59% 50%;
+    --primary: 210 100% 50%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -25,7 +25,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 262 54% 50%;
+    --accent: 210 100% 50%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -35,7 +35,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221 59% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -93,6 +93,11 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
   }
 }
 
@@ -106,22 +111,64 @@
   }
   
   .feature-card {
-    @apply rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
+    @apply rounded-2xl p-8 transition-all duration-300 backdrop-blur-sm bg-white/80 hover:bg-white hover:shadow-lg;
   }
   
   .btn-primary {
-    @apply bg-medical-blue hover:bg-medical-blue/90 text-white font-medium px-6 py-2 rounded-md transition-colors;
+    @apply bg-medical-blue hover:bg-medical-blue/90 text-white font-medium px-6 py-2 rounded-full transition-colors;
   }
   
   .btn-secondary {
-    @apply bg-medical-purple hover:bg-medical-purple/90 text-white font-medium px-6 py-2 rounded-md transition-colors;
+    @apply bg-medical-purple hover:bg-medical-purple/90 text-white font-medium px-6 py-2 rounded-full transition-colors;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-4;
+    @apply text-4xl md:text-5xl font-semibold mb-6 tracking-tight;
   }
   
   .section-subtitle {
-    @apply text-lg text-gray-600 mb-8 max-w-3xl mx-auto;
+    @apply text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed;
+  }
+  
+  .apple-card {
+    @apply rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300;
+  }
+  
+  .apple-button {
+    @apply rounded-full px-7 py-3 font-medium text-sm transition-colors duration-200;
+  }
+  
+  .apple-primary-button {
+    @apply apple-button bg-medical-blue text-white hover:bg-medical-blue/90;
+  }
+  
+  .apple-secondary-button {
+    @apply apple-button bg-gray-100 text-gray-900 hover:bg-gray-200;
+  }
+}
+
+/* Apple-inspired animations */
+@layer utilities {
+  .fade-in {
+    @apply opacity-0 animate-[fade-in_0.5s_ease-out_forwards];
+  }
+  
+  .slide-up {
+    @apply translate-y-4 opacity-0 animate-[slide-up_0.5s_ease-out_forwards];
+  }
+  
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes slide-up {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  .parallax-scroll {
+    @apply transition-transform duration-500;
+    transform: translateY(calc(var(--scroll) * -0.1px));
   }
 }

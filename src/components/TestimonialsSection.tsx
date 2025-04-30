@@ -8,17 +8,18 @@ type TestimonialProps = {
   title: string;
   image: string;
   rating: number;
+  index: number;
 };
 
-const Testimonial: React.FC<TestimonialProps> = ({ quote, name, title, image, rating }) => {
+const Testimonial: React.FC<TestimonialProps> = ({ quote, name, title, image, rating, index }) => {
   return (
-    <Card className="border-none shadow-lg">
-      <CardContent className="p-6">
-        <div className="flex items-center space-x-1 mb-4">
+    <Card className="apple-card animate-fade-in" style={{ animationDelay: `${0.2 * index}s` }}>
+      <CardContent className="p-8">
+        <div className="flex items-center space-x-1 mb-5">
           {[...Array(5)].map((_, i) => (
             <svg 
               key={i} 
-              className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`} 
+              className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-200'}`} 
               fill="currentColor" 
               viewBox="0 0 20 20"
             >
@@ -26,12 +27,12 @@ const Testimonial: React.FC<TestimonialProps> = ({ quote, name, title, image, ra
             </svg>
           ))}
         </div>
-        <p className="mb-4 italic text-gray-700">{quote}</p>
+        <p className="mb-6 text-lg text-medical-dark leading-relaxed">{quote}</p>
         <div className="flex items-center">
-          <img className="w-10 h-10 rounded-full mr-4 object-cover" src={image} alt={name} />
+          <img className="w-12 h-12 rounded-full mr-4 object-cover" src={image} alt={name} />
           <div>
-            <h4 className="font-semibold">{name}</h4>
-            <p className="text-sm text-gray-600">{title}</p>
+            <h4 className="font-medium text-medical-dark">{name}</h4>
+            <p className="text-sm text-medical-gray">{title}</p>
           </div>
         </div>
       </CardContent>
@@ -42,39 +43,41 @@ const Testimonial: React.FC<TestimonialProps> = ({ quote, name, title, image, ra
 const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
-      quote: "MedConnect's AI analysis helped detect my pancreatic tumor early, and the community provided invaluable emotional support during my treatment journey.",
+      quote: "MedConnect's AI analysis detected my pancreatic tumor early when conventional methods missed it. The intuitive platform and community support transformed my healthcare journey.",
       name: "Sarah Johnson",
       title: "Patient",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
       rating: 5
     },
     {
-      quote: "As a radiologist, the platform has streamlined my workflow significantly. The AI pre-screening saves valuable time while improving accuracy.",
+      quote: "As a radiologist, this platform has transformed my workflow. The AI pre-screening is remarkably accurate and saves critical time, allowing me to focus on complex cases.",
       name: "Dr. Michael Chen",
       title: "Radiologist",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
       rating: 5
     },
     {
-      quote: "The collaboration between AI technology and medical professionals on this platform represents the future of healthcare diagnostics.",
+      quote: "The integration of AI technology with expert medical oversight represents the future of diagnostic medicine. MedConnect has set a new standard in healthcare technology.",
       name: "Dr. Emily Rodriguez",
       title: "Chief of Radiology",
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
-      rating: 4
+      rating: 5
     },
   ];
 
   return (
-    <section id="testimonials" className="py-20 bg-gray-50">
+    <section id="testimonials" className="py-24 bg-white">
       <div className="container-custom">
-        <h2 className="section-title text-center">
-          Trusted by Patients and Professionals
-        </h2>
-        <p className="section-subtitle text-center">
-          Hear from our community about how MedConnect has transformed their healthcare experience.
-        </p>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="section-title animate-fade-in">
+            Trusted by Healthcare Professionals
+          </h2>
+          <p className="section-subtitle animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            See how MedConnect is transforming medical imaging and patient care around the world.
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <Testimonial
               key={index}
@@ -83,6 +86,7 @@ const TestimonialsSection: React.FC = () => {
               title={testimonial.title}
               image={testimonial.image}
               rating={testimonial.rating}
+              index={index}
             />
           ))}
         </div>
